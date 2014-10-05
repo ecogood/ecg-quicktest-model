@@ -8,7 +8,7 @@ JavaScript Model for the ECG quick test
 
 ## Install
 
-Requirements: Node.js 0.10.x
+Requirements: [Node.js 0.10.x](http://nodejs.org/)
 
 ```
 npm install --save ecg-quicktest-model
