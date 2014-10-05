@@ -46,7 +46,7 @@ The model is tested with [Mocha](http://visionmedia.github.io/mocha/) and [Chai]
 
 ## Roadmap
 
-* Create a JS model for the quick test and test it with mocha.
+* :white_check_mark: Create a JS model for the quick test 4.1 and test it with mocha.
 
 ## Contributing
 
