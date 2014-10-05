@@ -52,18 +52,18 @@ QuickTestAbstractModel.prototype.setParticipantType = function(_participantType)
 };
 
 /**
- * Sets the answer for the given question index.
+ * Sets the answer for the given question number.
  *
- * @throws {Error} if the question index is out of range or the given answer value is not allowed.
- * @param {int} questionIndex
+ * @throws {Error} if the question number is out of range or the given answer value is not allowed.
+ * @param {int} questionNumber - the question number, from 1 to questionCount().
  * @param answerValue
  */
-QuickTestAbstractModel.prototype.setAnswer = function(questionIndex, answerValue) {
+QuickTestAbstractModel.prototype.setAnswer = function(questionNumber, answerValue) {
 
   // check arguments
-  if (questionIndex < 0 || questionIndex > this.getQuestionsCount() - 1) {
-    throw new Error('The argument \'questionIndex\' of setAnswer() should ' +
-      'be between 0 and ' + (this.getQuestionsCount() - 1) + ', but has the value \'' + questionIndex + '\'.');
+  if (questionNumber < 1 || questionNumber > this.getQuestionsCount()) {
+    throw new Error('The argument \'questionNumber\' of setAnswer() should ' +
+      'be between 1 and ' + this.getQuestionsCount() + ', but has the value \'' + questionNumber + '\'.');
   }
   else if (this.getAllowedAnswers().indexOf(answerValue) === -1) {
     throw new Error('The argument \'answerValue\' of setAnswer() should ' +
@@ -71,16 +71,16 @@ QuickTestAbstractModel.prototype.setAnswer = function(questionIndex, answerValue
   }
 
   // set the value
-  this.answers[questionIndex] = answerValue;
+  this.answers[questionNumber - 1] = answerValue;
 };
 
 /**
  *
- * @param {int} questionIndex
- * @return {*} the answer for the given question index
+ * @param {int} questionNumber - the question number, from 1 to questionCount().
+ * @return {*} the answer for the given question number
  */
-QuickTestAbstractModel.prototype.getAnswer = function(questionIndex) {
-  return this.answers[questionIndex];
+QuickTestAbstractModel.prototype.getAnswer = function(questionNumber) {
+  return this.answers[questionNumber - 1];
 };
 
 QuickTestAbstractModel.prototype.getAnswersCount = function() {
