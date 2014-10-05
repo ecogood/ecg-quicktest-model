@@ -6,11 +6,26 @@ JavaScript Model for the ECG quick test
 ### Build Status
 [![Build Status](https://travis-ci.org/ecogood/ecg-quicktest-model.svg?branch=master)](https://travis-ci.org/ecogood/ecg-quicktest-model)
 
-## Exports
-
-This module exports:
+## Use
 
 ```javascript
+var quickTestModel = require('ecg-quicktest-model');
+var quickTest = quickTestModel.factory(); // creates test for matrix version 4.1
+
+quickTest.getQuestionsCount(); // how many questions are in the test
+quickTest.getAllowedAnswers(); // what answers are allowed for every question
+quickTest.getAllowedParticipantTypes(); // e.g. ['company', 'self-employed']
+
+// set the participant type (default is 'company')
+quickTest.setParticipantType('self-employed');
+
+// start answering
+quickTest.setAnswer(1, 3); // answer the first question with the value 3
+quickTest.setAnswer(2, 4); // answer the second question with the value 4
+// set the other answers
+
+// get the results
+quickTest.getResult().points; // return the achieved points
 ```
 
 ## Testing

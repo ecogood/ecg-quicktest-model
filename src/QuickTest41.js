@@ -22,7 +22,7 @@ function QuickTest41() {
   self.setParticipantType(allowedParticipantsTypes[0]); // default
 
   // independent inner properties
-  self.doubleValueQuestionIndexes = [18, 20, 22, 24, 25]; // 19, 21, 23, 25 and 26
+  self.doubleValueQuestionNumbers = [19, 21, 23, 25, 26]; // 19, 21, 23, 25 and 26
 }
 inheritPrototype(QuickTest41, QuickTestAbstractModel);
 
@@ -45,7 +45,7 @@ QuickTest41.prototype.setParticipantType = function(_participantType) {
 
   } else if (this.participantType === this.getAllowedParticipantTypes()[1]) { // self-employed
 
-    this.skipQuestions = [6, 9, 10, 11, 12, 13, 25];
+    this.skipQuestions = [7, 10, 11, 12, 13, 14, 26];
     this.participantQuestionsCount = this.getQuestionsCount() - this.skipQuestions.length;
     this.maxPoints = 122; // Math.floor((16*4+4*8)*1.28)
   } else {
@@ -107,14 +107,14 @@ QuickTest41.prototype.getResult = function() {
   var answersSum = this.answers.reduce(function(prev, cur, index) {
 
     // if 'self-employed' skip irrelevant questions
-    if (isSelfEmployed && that.skipQuestions.indexOf(index) !== -1) {
+    if (isSelfEmployed && that.skipQuestions.indexOf(index+1) !== -1) {
       return prev;
 
     } else {
       var curValue = cur;
 
       // double the value of important questions
-      if (that.doubleValueQuestionIndexes.indexOf(index) !== -1) {
+      if (that.doubleValueQuestionNumbers.indexOf(index+1) !== -1) {
         curValue = curValue * 2;
       }
       return prev + curValue;

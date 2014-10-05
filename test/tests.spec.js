@@ -84,8 +84,8 @@ describe('QuickTest 4.1', function() {
   });
 
   it('should save allowed answers', function() {
-    quickTest.setAnswer(0, 2);
-    expect(quickTest.getAnswer(0)).to.equal(2);
+    quickTest.setAnswer(1, 2);
+    expect(quickTest.getAnswer(1)).to.equal(2);
   });
 
   it('should throw error when saving not allowed answer and not save it', function() {
@@ -95,14 +95,19 @@ describe('QuickTest 4.1', function() {
   });
 
   it('should throw error when saving an answer for non-existing question', function() {
-    var notAllowedSetAnswer = quickTest.setAnswer.bind(quickTest, quickTest.getQuestionsCount(), 2);
-    expect(notAllowedSetAnswer).to.throw(Error);
+    var setAnswerZeroQuestion = quickTest.setAnswer.bind(quickTest, 0, 2);
+    expect(setAnswerZeroQuestion).to.throw(Error);
+
+    var setAnswerMoreThanMaxQuestion = quickTest.setAnswer.bind(quickTest, quickTest.getQuestionsCount()+1, 2);
+    expect(setAnswerMoreThanMaxQuestion).to.throw(Error);
+
+    expect(quickTest.getAnswersCount()).to.equal(0);
   });
 
   it('can override answers', function() {
-    quickTest.setAnswer(0, 2);
-    quickTest.setAnswer(0, 3);
-    expect(quickTest.getAnswer(0)).to.equal(3);
+    quickTest.setAnswer(1, 2);
+    quickTest.setAnswer(1, 3);
+    expect(quickTest.getAnswer(1)).to.equal(3);
   });
 
   it('should save participant type', function() {
@@ -125,19 +130,19 @@ describe('QuickTest 4.1', function() {
   });
 
   it('should have 5 result points for answers [1,2,0,2] of the participant \'company\'', function() {
-    quickTest.setAnswer(0, 1);
-    quickTest.setAnswer(1, 2);
-    quickTest.setAnswer(2, 0);
-    quickTest.setAnswer(3, 2);
+    quickTest.setAnswer(1, 1);
+    quickTest.setAnswer(2, 2);
+    quickTest.setAnswer(3, 0);
+    quickTest.setAnswer(4, 2);
     expect(quickTest.getResult().points).to.equal(5);
   });
 
   it('should have 6 result points for answers [1,2,0,2] of the participant \'self-employed\'', function() {
     quickTest.setParticipantType('self-employed');
-    quickTest.setAnswer(0, 1);
-    quickTest.setAnswer(1, 2);
-    quickTest.setAnswer(2, 0);
-    quickTest.setAnswer(3, 2);
+    quickTest.setAnswer(1, 1);
+    quickTest.setAnswer(2, 2);
+    quickTest.setAnswer(3, 0);
+    quickTest.setAnswer(4, 2);
     expect(quickTest.getResult().points).to.equal(6); // Math.floor(5*1.28)
   });
 
@@ -146,7 +151,7 @@ describe('QuickTest 4.1', function() {
     var highestAnswer = allowedAnswers[allowedAnswers.length - 1];
 
     // set all answers to the highest answer
-    for (var i = 0; i < quickTest.getQuestionsCount(); i++) {
+    for (var i = 1; i <= quickTest.getQuestionsCount(); i++) {
       quickTest.setAnswer(i, highestAnswer);
     }
 
@@ -159,7 +164,7 @@ describe('QuickTest 4.1', function() {
     var highestAnswer = allowedAnswers[allowedAnswers.length - 1];
 
     // set all answers to the highest answer
-    for (var i = 0; i < quickTest.getQuestionsCount(); i++) {
+    for (var i = 1; i <= quickTest.getQuestionsCount(); i++) {
       quickTest.setAnswer(i, highestAnswer);
     }
 
