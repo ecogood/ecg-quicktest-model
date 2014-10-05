@@ -6,6 +6,16 @@ JavaScript Model for the ECG quick test
 ### Build Status
 [![Build Status](https://travis-ci.org/ecogood/ecg-quicktest-model.svg?branch=master)](https://travis-ci.org/ecogood/ecg-quicktest-model)
 
+## Install
+
+Requirements:
+
+* Node.js 0.10.x
+
+```
+npm install --save ecg-quicktest-model
+```
+
 ## Use
 
 ```javascript
@@ -39,16 +49,6 @@ The model is tested with [Mocha](http://visionmedia.github.io/mocha/) and [Chai]
 ## Roadmap
 
 * Create a JS model for the quick test and test it with mocha.
-
-## Installation
-
-Requirements:
-
-* Node.js 0.10.x
-
-```
-npm install --save ecg-quicktest-model
-```
 
 ## Contributing
 
