@@ -37,7 +37,7 @@ module.exports = function(grunt) {
       options: {
         jshintrc: '.jshintrc'
       },
-      all: ['index.js', 'test/**/*.js']
+      all: ['src/**/*', 'test/**/*.js']
     },
 
     // Clean test files before building or re-testing.
