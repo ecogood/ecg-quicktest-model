@@ -10,7 +10,7 @@ JavaScript Model for the ECG quick test
 
 ```javascript
 var quickTestModel = require('ecg-quicktest-model');
-var quickTest = quickTestModel.factory(); // creates test for matrix version 4.1
+var quickTest = quickTestModel.factory(); // create test for matrix version 4.1
 
 quickTest.getQuestionsCount(); // how many questions are in the test, e.g. 27
 quickTest.getAllowedAnswers(); // e.g. [0, 1, 2, 3, 4]
