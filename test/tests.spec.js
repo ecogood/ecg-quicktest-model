@@ -41,15 +41,15 @@ describe('every test', function() {
 
   it('should have at least one allowed participant type', function() {
     quickTests.forEach(function(quickTest) {
-      expect(quickTest.getAllowedParticipants().length).to.be.above(0);
+      expect(quickTest.getAllowedParticipantTypes().length).to.be.above(0);
     });
   });
 
   it('should have maximum points > 0', function() {
     quickTests.forEach(function(quickTest) {
-      quickTest.setParticipantType(quickTest.getAllowedParticipants()[0]);
+      quickTest.setParticipantType(quickTest.getAllowedParticipantTypes()[0]);
       expect(quickTest.getMaxPoints()).to.be.above(0);
-      quickTest.setParticipantType(quickTest.getAllowedParticipants()[1]);
+      quickTest.setParticipantType(quickTest.getAllowedParticipantTypes()[1]);
       expect(quickTest.getMaxPoints()).to.be.above(0);
     });
   });

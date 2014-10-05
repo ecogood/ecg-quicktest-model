@@ -8,10 +8,12 @@
  * - get final result.
  *
  * **Note**: Children of this class, should:
- * add the properties:
+ * - call setParticipantType() in their constructor.
+ * implement the methods:
  * - {int} getQuestionsCount() - how many questions are in the test
- * - {Array} allowedAnswers - an array of the allowed answers for every question.
- * implement the method:
+ * - {Array} getAllowedAnswers() - an array with the allowed answers for every question.
+ * - {Array} getAllowedParticipantTypes() - an array with the allowed participant types.
+ * - {int] getMaxPoints() - the the maximum achievable points in the test for the set participant type.
  * - {int} getResult() - an object {points: <points>, percentage: <percentage>} containing
  * the points and the percentage from 0 to 100% that have been reached.
  *
@@ -22,8 +24,7 @@ function QuickTestAbstractModel() {
   var self = this instanceof QuickTestAbstractModel ? this : Object.create(QuickTestAbstractModel.prototype);
 
   // shared properties
-  self.participantType = '';
-  self.answers = []; // "0": "1" - "<questionIndex>":"<answerValue>"
+  self.answers = []; // [<questionIndex>]=<answerValue>
 }
 
 /**
@@ -39,7 +40,7 @@ QuickTestAbstractModel.prototype.getParticipantType = function() {
  */
 QuickTestAbstractModel.prototype.setParticipantType = function(_participantType) {
 
-  var allowedParticipantsTypes = this.getAllowedParticipants();
+  var allowedParticipantsTypes = this.getAllowedParticipantTypes();
   // check argument
   if (allowedParticipantsTypes.indexOf(_participantType) === -1) {
     throw new Error('The argument \'_participantType\' of setParticipantType() should ' +
