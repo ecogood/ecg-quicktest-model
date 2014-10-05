@@ -12,8 +12,8 @@ JavaScript Model for the ECG quick test
 var quickTestModel = require('ecg-quicktest-model');
 var quickTest = quickTestModel.factory(); // creates test for matrix version 4.1
 
-quickTest.getQuestionsCount(); // how many questions are in the test
-quickTest.getAllowedAnswers(); // what answers are allowed for every question
+quickTest.getQuestionsCount(); // how many questions are in the test, e.g. 27
+quickTest.getAllowedAnswers(); // e.g. [0, 1, 2, 3, 4]
 quickTest.getAllowedParticipantTypes(); // e.g. ['company', 'self-employed']
 
 // set the participant type (default is 'company')
