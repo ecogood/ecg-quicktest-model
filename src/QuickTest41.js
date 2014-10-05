@@ -16,7 +16,7 @@ function QuickTest41() {
   // super constructor call
   QuickTestAbstractModel.call(self);
 
-  var allowedParticipantsTypes = self.getAllowedParticipants();
+  var allowedParticipantsTypes = self.getAllowedParticipantTypes();
 
   // dependent parent properties
   self.setParticipantType(allowedParticipantsTypes[0]); // default
@@ -34,23 +34,22 @@ inheritPrototype(QuickTest41, QuickTestAbstractModel);
 QuickTest41.prototype.setParticipantType = function(_participantType) {
 
   // super call
-  var superPrototype = Object.getPrototypeOf(Object.getPrototypeOf(this));
-  superPrototype.setParticipantType.call(this, _participantType);
+  QuickTestAbstractModel.prototype.setParticipantType.call(this, _participantType);
 
   // set other properties according the to participant type
-  if (this.participantType === this.getAllowedParticipants()[0]) { // company
+  if (this.participantType === this.getAllowedParticipantTypes()[0]) { // company
 
     this.skipQuestions = [];
     this.participantQuestionsCount = this.getQuestionsCount();
     this.maxPoints = 128; // 22*4+5*8
 
-  } else if (this.participantType === this.getAllowedParticipants()[1]) { // self-employed
+  } else if (this.participantType === this.getAllowedParticipantTypes()[1]) { // self-employed
 
     this.skipQuestions = [6, 9, 10, 11, 12, 13, 25];
     this.participantQuestionsCount = this.getQuestionsCount() - this.skipQuestions.length;
     this.maxPoints = 122; // Math.floor((16*4+4*8)*1.28)
   } else {
-    throw Error('Cannot set unallowed participant: ', _participantType);
+    throw new Error('Cannot set unallowed participant: ', _participantType);
   }
 };
 
@@ -80,23 +79,29 @@ QuickTest41.prototype.getAllowedAnswers = function() {
 
 /**
  * @return {Array} array with the allowed participant types.
+ * @implements
  */
-QuickTest41.prototype.getAllowedParticipants = function() {
+QuickTest41.prototype.getAllowedParticipantTypes = function() {
   return ['company', 'self-employed'];
 };
 
 /**
  * @return {{participantType1: maxPoints1, participantType2, maxPoints2}}
  * an obj containing the maximum points for each participant type
+ * @implements
  */
 QuickTest41.prototype.getMaxPoints = function() {
   return this.maxPoints;
 };
 
+QuickTest41.prototype.getSkipQuestions = function() {
+  return this.skipQuestions;
+};
+
 QuickTest41.prototype.getResult = function() {
 
   var that = this;
-  var isSelfEmployed = this.participantType === this.getAllowedParticipants()[1];
+  var isSelfEmployed = this.participantType === this.getAllowedParticipantTypes()[1];
 
   // sum all answer values
   var answersSum = this.answers.reduce(function(prev, cur, index) {
@@ -130,10 +135,6 @@ QuickTest41.prototype.getResult = function() {
     points: finalPoints,
     percentage: finalPercentage
   };
-};
-
-QuickTest41.prototype.getSkipQuestions = function() {
-  return this.skipQuestions;
 };
 
 /**
