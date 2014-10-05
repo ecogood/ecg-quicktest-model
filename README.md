@@ -76,3 +76,5 @@ Share issues and desired features [in GitHub](https://github.com/ecogood/ecg-qui
 * [Nikolay Georgiev](http://nikolay-georgiev.net/), main developer, ECG Berlin.
 
 ## Release History
+
+* 0.0.1 - added quick test 4.1 with tests and how to use.
