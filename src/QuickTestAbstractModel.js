@@ -24,14 +24,22 @@ function QuickTestAbstractModel() {
   var self = this instanceof QuickTestAbstractModel ? this : Object.create(QuickTestAbstractModel.prototype);
 
   // shared properties
+  self.participant = {};
   self.answers = []; // [<questionIndex>]=<answerValue>
 }
 
 /**
  * @return {string} the current participant type
  */
+QuickTestAbstractModel.prototype.getParticipant = function() {
+  return this.participant;
+};
+
+/**
+ * @return {string} the current participant type
+ */
 QuickTestAbstractModel.prototype.getParticipantType = function() {
-  return this.participantType;
+  return this.participant.type;
 };
 
 /**
@@ -48,7 +56,7 @@ QuickTestAbstractModel.prototype.setParticipantType = function(_participantType)
   }
 
   // set it
-  this.participantType = _participantType;
+  this.participant.type = _participantType;
 };
 
 /**

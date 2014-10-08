@@ -37,13 +37,13 @@ QuickTest41.prototype.setParticipantType = function(_participantType) {
   QuickTestAbstractModel.prototype.setParticipantType.call(this, _participantType);
 
   // set other properties according the to participant type
-  if (this.participantType === this.getAllowedParticipantTypes()[0]) { // company
+  if (this.getParticipantType() === this.getAllowedParticipantTypes()[0]) { // company
 
     this.skipQuestions = [];
     this.participantQuestionsCount = this.getQuestionsCount();
     this.maxPoints = 128; // 22*4+5*8
 
-  } else if (this.participantType === this.getAllowedParticipantTypes()[1]) { // self-employed
+  } else if (this.getParticipantType() === this.getAllowedParticipantTypes()[1]) { // self-employed
 
     this.skipQuestions = [7, 10, 11, 12, 13, 14, 26];
     this.participantQuestionsCount = this.getQuestionsCount() - this.skipQuestions.length;
@@ -101,7 +101,7 @@ QuickTest41.prototype.getSkipQuestions = function() {
 QuickTest41.prototype.getResult = function() {
 
   var that = this;
-  var isSelfEmployed = this.participantType === this.getAllowedParticipantTypes()[1];
+  var isSelfEmployed = this.getParticipantType() === this.getAllowedParticipantTypes()[1];
 
   // sum all answer values
   var answersSum = this.answers.reduce(function(prev, cur, index) {
