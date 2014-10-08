@@ -75,4 +75,5 @@ Share issues and desired features [in GitHub](https://github.com/ecogood/ecg-qui
 
 ## Release History
 
+* 0.0.2 - add test participant.
 * 0.0.1 - added quick test 4.1 with tests and how to use.
