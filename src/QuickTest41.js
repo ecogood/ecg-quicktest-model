@@ -121,19 +121,32 @@ QuickTest41.prototype.getResult = function() {
     }
   }, 0);
 
-  var finalPoints = answersSum;
+  // set result points
+  var resultPoints = answersSum;
   if (isSelfEmployed) { // self-employed
     // 43.89 is floored to 43
-    finalPoints = Math.floor(answersSum * 1.28); // 1.28 = 32/25
+    resultPoints = Math.floor(answersSum * 1.28); // 1.28 = 32/25
   } else {
     // participant company is assumed, so not change of the points.
   }
 
-  var finalPercentage = Number(finalPoints / this.getMaxPoints()).toFixed(2) * 100;
+  // set result percentage
+  var resultPercentage = Number(resultPoints / this.getMaxPoints()).toFixed(2) * 100;
+
+  // set result level
+  var resultLevel = 0;
+  if (resultPoints >= 33 && resultPoints <= 62) {
+    resultLevel = 1;
+  } else if (resultPoints >= 63 && resultPoints <= 94) {
+    resultLevel = 2;
+  } else if (resultPoints >= 95 && resultPoints <= 128) {
+    resultLevel = 3;
+  }
 
   return {
-    points: finalPoints,
-    percentage: finalPercentage
+    points: resultPoints,
+    percentage: resultPercentage,
+    level: resultLevel
   };
 };
 

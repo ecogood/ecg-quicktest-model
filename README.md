@@ -34,6 +34,7 @@ quickTest.setAnswer(2, 4); // answer the second question with the value 4
 
 // get the results
 quickTest.getResult().points; // return the achieved points
+quickTest.getResult().level; // return the achieved level (0 for 32 points, 1 for 62, 2 for 94 and 3 for 128 points)
 ```
 
 ## Testing
@@ -75,5 +76,6 @@ Share issues and desired features [in GitHub](https://github.com/ecogood/ecg-qui
 
 ## Release History
 
+* 0.0.3 - add result level.
 * 0.0.2 - add test participant.
 * 0.0.1 - added quick test 4.1 with tests and how to use.
