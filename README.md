@@ -76,6 +76,7 @@ Share issues and desired features [in GitHub](https://github.com/ecogood/ecg-qui
 
 ## Release History
 
+* 0.0.7 - fix getAnswersCount() method of to the abstract test. Tests improved.
 * 0.0.6 - add getPercentageFinished() and getAnswersCount() methods to the abstract test. Tests included.
 * 0.0.4 - add getNextQuestion() and getNextQuestion() methods to the 4.1 test. Tests included.
 * 0.0.3 - add result level.

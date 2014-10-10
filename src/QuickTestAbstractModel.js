@@ -94,14 +94,14 @@ QuickTestAbstractModel.prototype.getAnswer = function(questionNumber) {
 QuickTestAbstractModel.prototype.getAnswersCount = function() {
   var that = this;
   var answersCount = 0;
-  this.answers.forEach(function(answer, index) {
+  Object.keys(this.answers).forEach(function(index) {
     if (that.getParticipantType() === that.getAllowedParticipantTypes()[1] &&
-        that.getSkipQuestions().indexOf(index) !== -1) {
+      that.getSkipQuestions().indexOf(index) !== -1) {
       // self-employed and skip question
-      return;
     }
-
-    answersCount++;
+    else {
+      answersCount++;
+    }
   });
   return answersCount;
 };
@@ -109,7 +109,7 @@ QuickTestAbstractModel.prototype.getAnswersCount = function() {
 QuickTestAbstractModel.prototype.getPercentageFinished = function() {
   var answeredQuestions = this.getAnswersCount();
   var participantQuestionsCount = this.getParticipantQuestionsCount();
-  return Math.floor(Number(answeredQuestions / participantQuestionsCount).toFixed(2) * 100);
+  return Math.floor(((Number(answeredQuestions / participantQuestionsCount)) * 100).toFixed(2));
 };
 
 module.exports = QuickTestAbstractModel;
