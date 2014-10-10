@@ -98,7 +98,7 @@ describe('QuickTest 4.1', function() {
     var setAnswerZeroQuestion = quickTest.setAnswer.bind(quickTest, 0, 2);
     expect(setAnswerZeroQuestion).to.throw(Error);
 
-    var setAnswerMoreThanMaxQuestion = quickTest.setAnswer.bind(quickTest, quickTest.getQuestionsCount()+1, 2);
+    var setAnswerMoreThanMaxQuestion = quickTest.setAnswer.bind(quickTest, quickTest.getQuestionsCount() + 1, 2);
     expect(setAnswerMoreThanMaxQuestion).to.throw(Error);
 
     expect(quickTest.getAnswersCount()).to.equal(0);
@@ -170,6 +170,99 @@ describe('QuickTest 4.1', function() {
 
     quickTest.setParticipantType('company');
     expect(quickTest.getResult().points).to.equal(quickTest.getMaxPoints());
+  });
+
+  it('should have correct previous questions for participant type \'company\'', function() {
+    quickTest.setParticipantType('company');
+    expect(quickTest.getPrevQuestion(0)).to.eql(null);
+    for (var i = 1; i <= 28; i++) {
+      expect(quickTest.getPrevQuestion(i)).to.eql(i - 1);
+    }
+    expect(quickTest.getPrevQuestion(29)).to.eql(27);
+    expect(quickTest.getPrevQuestion(100)).to.eql(27);
+
+    // invalid values
+    expect(quickTest.getPrevQuestion('1')).to.eql(null);
+    expect(quickTest.getPrevQuestion('7')).to.eql(null);
+  });
+
+  it('should have correct previous questions for participant type \'self-employed\'', function() {
+    quickTest.setParticipantType('self-employed');
+    // skipped: 7, 10, 11, 12, 13, 14 und 26
+
+    expect(quickTest.getPrevQuestion(-1)).to.eql(null);
+    expect(quickTest.getPrevQuestion(0)).to.eql(null);
+    for (var i = 1; i <= 7; i++) {
+      expect(quickTest.getPrevQuestion(i)).to.eql(i - 1);
+    }
+    expect(quickTest.getPrevQuestion(8)).to.eql(6);
+    expect(quickTest.getPrevQuestion(9)).to.eql(8);
+    for (i = 10; i <= 15; i++) {
+      expect(quickTest.getPrevQuestion(i)).to.eql(9);
+    }
+    for (i = 16; i <= 26; i++) {
+      expect(quickTest.getPrevQuestion(i)).to.eql(i - 1);
+    }
+    expect(quickTest.getPrevQuestion(27)).to.eql(25);
+    expect(quickTest.getPrevQuestion(28)).to.eql(27);
+    expect(quickTest.getPrevQuestion(29)).to.eql(27);
+    expect(quickTest.getPrevQuestion(100)).to.eql(27);
+    // ...
+
+    // invalid values
+    expect(quickTest.getPrevQuestion('1')).to.eql(null);
+    expect(quickTest.getPrevQuestion('7')).to.eql(null);
+  });
+
+  it('should have correct next questions for participant type \'company\'', function() {
+    quickTest.setParticipantType('company');
+    var questionsCount = quickTest.getQuestionsCount();
+    expect(quickTest.getNextQuestion(-2)).to.eql(0);
+    expect(quickTest.getNextQuestion(-1)).to.eql(0);
+    expect(quickTest.getNextQuestion(0)).to.eql(1);
+    for (var i = 1; i <= questionsCount - 1; i++) {
+      expect(quickTest.getNextQuestion(i)).to.eql(i + 1);
+    }
+    expect(quickTest.getNextQuestion(questionsCount)).to.eql(null);
+    expect(quickTest.getNextQuestion(questionsCount + 1)).to.eql(null);
+    expect(quickTest.getNextQuestion(100)).to.eql(null);
+
+    // invalid values
+    expect(quickTest.getNextQuestion('1')).to.eql(null);
+    expect(quickTest.getNextQuestion('7')).to.eql(null);
+  });
+
+  it('should have correct next questions for participant type \'self-employed\'', function() {
+    quickTest.setParticipantType('self-employed');
+
+    expect(quickTest.getNextQuestion(-2)).to.eql(0);
+    expect(quickTest.getNextQuestion(-1)).to.eql(0);
+    expect(quickTest.getNextQuestion(0)).to.eql(1);
+
+    // skipped: 7, 10, 11, 12, 13, 14 und 26
+    for (var i = 1; i <= 5; i++) {
+      expect(quickTest.getNextQuestion(i)).to.eql(i + 1);
+    }
+    expect(quickTest.getNextQuestion(6)).to.eql(8);
+    for (i = 7; i <= 8; i++) {
+      expect(quickTest.getNextQuestion(i)).to.eql(i + 1);
+    }
+    for (i = 9; i <= 14; i++) {
+      expect(quickTest.getNextQuestion(i)).to.eql(15);
+    }
+    for (i = 15; i <= 24; i++) {
+      expect(quickTest.getNextQuestion(i)).to.eql(i + 1);
+    }
+    expect(quickTest.getNextQuestion(25)).to.eql(27);
+    expect(quickTest.getNextQuestion(27)).to.eql(null);
+    expect(quickTest.getNextQuestion(28)).to.eql(null);
+    expect(quickTest.getNextQuestion(29)).to.eql(null);
+    expect(quickTest.getNextQuestion(100)).to.eql(null);
+    // ...
+
+    // invalid values
+    expect(quickTest.getNextQuestion('1')).to.eql(null);
+    expect(quickTest.getNextQuestion('7')).to.eql(null);
   });
 
 });
