@@ -92,17 +92,26 @@ QuickTestAbstractModel.prototype.getAnswer = function(questionNumber) {
 };
 
 QuickTestAbstractModel.prototype.getAnswersCount = function() {
-  //TODO
+  var that = this;
   var answersCount = 0;
-  this.answers.forEach(function(answer) {
+  this.answers.forEach(function(answer, index) {
+    if (that.getParticipantType() === that.getAllowedParticipantTypes()[1] &&
+        that.getSkipQuestions().indexOf(index) !== -1) {
+      // self-employed and skip question
+      return;
+    }
+
     answersCount++;
   });
   return answersCount;
 };
 
 QuickTestAbstractModel.prototype.getPercentageFinished = function() {
-  // TODO
-  return 0;
+  var answeredQuestions = this.getAnswersCount();
+  var participantQuestionsCount = this.getParticipantQuestionsCount();
+  console.log('answeredQuestions = ', answeredQuestions);
+  console.log('participantQuestionsCount = ', participantQuestionsCount);
+  return Math.floor(Number(answeredQuestions / participantQuestionsCount).toFixed(2) * 100);
 };
 
 module.exports = QuickTestAbstractModel;
