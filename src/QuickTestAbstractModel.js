@@ -109,8 +109,6 @@ QuickTestAbstractModel.prototype.getAnswersCount = function() {
 QuickTestAbstractModel.prototype.getPercentageFinished = function() {
   var answeredQuestions = this.getAnswersCount();
   var participantQuestionsCount = this.getParticipantQuestionsCount();
-  console.log('answeredQuestions = ', answeredQuestions);
-  console.log('participantQuestionsCount = ', participantQuestionsCount);
   return Math.floor(Number(answeredQuestions / participantQuestionsCount).toFixed(2) * 100);
 };
 
