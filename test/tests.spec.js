@@ -277,8 +277,13 @@ describe('QuickTest 4.1', function() {
   it('should return 0 and 100% getPercentageFinished for \'self-employed\'', function() {
     quickTest.setParticipantType('self-employed');
     expect(quickTest.getPercentageFinished()).to.eql(0);
-    for (var i = 1; i <= 27; i++) {
+    var curPercentage = 0;
+    for (var i = 1; i !== null && i <= 27;) {
       quickTest.setAnswer(i, 3);
+      curPercentage += 5;
+      expect(quickTest.getPercentageFinished()).to.eql(curPercentage);
+
+      i = quickTest.getNextQuestion(i);
     }
     expect(quickTest.getPercentageFinished()).to.eql(100);
   });

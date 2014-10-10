@@ -1,6 +1,6 @@
 {
   "name": "ecg-quicktest-model",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "JavaScript Model for the ECG quick test",
   "main": "src/quicktest-model.js",
   "scripts": {
