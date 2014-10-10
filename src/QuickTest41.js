@@ -216,7 +216,7 @@ QuickTest41.prototype.getResult = function() {
   }
 
   // set result percentage
-  var resultPercentage = Number(resultPoints / this.getMaxPoints()).toFixed(2) * 100;
+  var resultPercentage = Math.floor(Number(resultPoints / this.getMaxPoints()).toFixed(2) * 100);
 
   // set result level
   var resultLevel = 0;

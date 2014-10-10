@@ -265,4 +265,22 @@ describe('QuickTest 4.1', function() {
     expect(quickTest.getNextQuestion('7')).to.eql(null);
   });
 
+  it('should return 0 and 100% getPercentageFinished for \'company\'', function() {
+    quickTest.setParticipantType('company');
+    expect(quickTest.getPercentageFinished()).to.eql(0);
+    for (var i = 1; i <= 27; i++) {
+      quickTest.setAnswer(i, 3);
+    }
+    expect(quickTest.getPercentageFinished()).to.eql(100);
+  });
+
+  it('should return 0 and 100% getPercentageFinished for \'self-employed\'', function() {
+    quickTest.setParticipantType('self-employed');
+    expect(quickTest.getPercentageFinished()).to.eql(0);
+    for (var i = 1; i <= 27; i++) {
+      quickTest.setAnswer(i, 3);
+    }
+    expect(quickTest.getPercentageFinished()).to.eql(100);
+  });
+
 });
