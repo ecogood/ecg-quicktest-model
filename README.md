@@ -37,13 +37,19 @@ quickTest.getResult().points; // return the achieved points
 quickTest.getResult().level; // return the achieved level (0 for 32 points, 1 for 62, 2 for 94 and 3 for 128 points)
 ```
 
-## Testing
 
-Run the tests:
+## Tests
+
+The data files and the module are tested with [Mocha](http://visionmedia.github.io/mocha/) and [Chai](http://chaijs.com/).
+
+### View the tests
+
+[Open the tests](test/tests.spec.js)
+
+### Run the tests
 
 ``npm test``
 
-The model is tested with [Mocha](http://visionmedia.github.io/mocha/) and [Chai](http://chaijs.com/).
 
 ## Roadmap
 
