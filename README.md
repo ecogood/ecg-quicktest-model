@@ -1,10 +1,7 @@
-ecg-quicktest-model
+ecg-quicktest-model [![Build Status](https://travis-ci.org/ecogood/ecg-quicktest-model.svg?branch=master)](https://travis-ci.org/ecogood/ecg-quicktest-model)
 ===================
 
 JavaScript Model for the ECG quick test
-
-### Build Status
-[![Build Status](https://travis-ci.org/ecogood/ecg-quicktest-model.svg?branch=master)](https://travis-ci.org/ecogood/ecg-quicktest-model)
 
 ## Install
 
