@@ -1,4 +1,4 @@
-ecg-quicktest-model [![Build Status](https://travis-ci.org/ecogood/ecg-quicktest-model.svg?branch=master)](https://travis-ci.org/ecogood/ecg-quicktest-model)
+ecg-quicktest-model [![Build Status][travis-image]][travis-url] [![NPM version][npm-image]][npm-url] 
 ===================
 
 JavaScript Model for the ECG quick test
@@ -85,3 +85,9 @@ Share issues and desired features [in GitHub](https://github.com/ecogood/ecg-qui
 * 0.0.3 - add result level.
 * 0.0.2 - add test participant.
 * 0.0.1 - added quick test 4.1 with tests and how to use.
+
+
+[travis-image]: https://travis-ci.org/ecogood/ecg-quicktest-model.svg?branch=master
+[travis-url]: https://travis-ci.org/ecogood/ecg-quicktest-model
+[npm-url]:  https://npmjs.org/package/ecg-quicktest-model
+[npm-image]: http://img.shields.io/npm/v/ecg-quicktest-model.svg?style=flat
