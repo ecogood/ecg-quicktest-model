@@ -1,5 +1,6 @@
 ecg-quicktest-model [![Build Status][travis-image]][travis-url] [![NPM version][npm-image]][npm-url] 
 ===================
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/ecogood/ecg-quicktest-model?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 JavaScript Model for the ECG quick test
 
