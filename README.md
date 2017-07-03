@@ -37,7 +37,7 @@ quickTest.getResult().level; // return the achieved level (0 for 32 points, 1 fo
 
 ## Tests
 
-The data files and the module are tested with [Mocha](http://visionmedia.github.io/mocha/) and [Chai](http://chaijs.com/).
+The data files and the module are tested with [Mocha](http://mochajs.org/) and [Chai](http://chaijs.com/).
 
 ### View the tests
 
